@@ -1,5 +1,7 @@
 const std = @import("std");
 const rl = @import("raylib");
+const ziglua = @import("ziglua");
+const Lua = ziglua.Lua;
 
 // config.zig
 const WINDOW_WIDTH = 800;
@@ -9,7 +11,21 @@ const TARGET_FPS = 60;
 // Placeholder state
 const GameState = struct {};
 
+// Small example of how to prepare the main raylib window and a Lua VM
 pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer std.debug.print("{}", .{gpa.deinit()});
+
+    const allocator = gpa.allocator();
+
+    // Initialize the Lua vm
+    var lua = try Lua.init(allocator);
+    defer lua.deinit();
+
+    // Add an integer to the Lua stack and retrieve it
+    lua.pushInteger(42);
+    std.debug.print("{}\n", .{try lua.toInteger(1)});
+
     rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "raylib game");
     defer rl.CloseWindow();
     rl.SetTargetFPS(TARGET_FPS);

@@ -15,6 +15,7 @@ pub fn build(b: *std.Build) void {
         .root_module = exe_mod,
     });
     b.installArtifact(exe);
+
     {
         const raylib_dep = b.dependency("raylib", .{
             .target = target,
@@ -25,6 +26,18 @@ pub fn build(b: *std.Build) void {
         b.installArtifact(lib);
         exe.linkLibrary(lib);
         exe_mod.addImport("raylib", module);
+    }
+    {
+        const ziglua_dep = b.dependency("ziglua", .{
+            .target = target,
+            .optimize = optimize,
+            .lang = .lua54,
+        });
+        const lib = ziglua_dep.artifact("lua");
+        const module = ziglua_dep.module("ziglua");
+        b.installArtifact(lib);
+        exe.linkLibrary(lib);
+        exe_mod.addImport("ziglua", module);
     }
 
     const run_cmd = b.addRunArtifact(exe);

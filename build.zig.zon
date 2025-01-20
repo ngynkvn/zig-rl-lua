@@ -4,6 +4,10 @@
     .minimum_zig_version = "0.14.0",
     .dependencies = .{
         .raylib = .{ .path = "./deps/raylib" },
+        .ziglua = .{
+            .url = "git+https://github.com/ngynkvn/ziglua#6e645942ecb5e35a0761ed6a159b701ab8176522",
+            .hash = "122003143acff5b018cf22505505664051295a3edb17e0ec07f57ae62e055a283173",
+        },
     },
     .paths = .{
         "build.zig",
