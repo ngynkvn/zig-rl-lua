@@ -1,0 +1,11 @@
+.zig-cache/
+zig-out/
+build/
+build-*/
+docgen_tmp/
+
+# Personal
+tmp/
+notes/
+testdata/
+TODO.md
