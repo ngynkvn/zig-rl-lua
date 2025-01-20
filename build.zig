@@ -48,4 +48,9 @@ pub fn build(b: *std.Build) void {
     const check_step = b.step("check", "");
     check_step.dependOn(&exe.step);
     check_step.dependOn(test_step);
+
+    // TODO:
+    // - Asset embedding
+    // - Debug/Release specific features
+    // - Platform-specific configurations
 }

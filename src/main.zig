@@ -1,31 +1,37 @@
 const std = @import("std");
 const rl = @import("raylib");
 
+// config.zig
+const WINDOW_WIDTH = 800;
+const WINDOW_HEIGHT = 450;
+const TARGET_FPS = 60;
+
+// Placeholder state
+const GameState = struct {};
+
 pub fn main() !void {
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-    _ = rl;
+    rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "raylib game");
+    defer rl.CloseWindow();
+    rl.SetTargetFPS(TARGET_FPS);
 
-    const stdout_file = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(stdout_file);
-    const stdout = bw.writer();
-
-    try stdout.print("Run `zig build test` to run the tests.\n", .{});
-
-    try bw.flush();
-}
-
-test "simple test" {
-    var list = std.ArrayList(i32).init(std.testing.allocator);
-    defer list.deinit();
-    try list.append(42);
-    try std.testing.expectEqual(@as(i32, 42), list.pop());
-}
-
-test "fuzz example" {
-    const global = struct {
-        fn testOne(input: []const u8) anyerror!void {
-            try std.testing.expect(!std.mem.eql(u8, "canyoufindme", input));
+    var game = GameState{};
+    game = game;
+    while (!rl.WindowShouldClose()) {
+        // Update
+        {
+            // TODO: Add input handling and game logic
         }
-    };
-    try std.testing.fuzz(global.testOne, .{});
+
+        // Render
+        rl.BeginDrawing();
+        defer rl.EndDrawing();
+        rl.ClearBackground(rl.RAYWHITE);
+        // TODO: rendering
+        rl.DrawText("Hello, Raylib!", 190, 200, 20, rl.LIGHTGRAY);
+    }
+}
+
+test "basic game state" {
+    const state = GameState{};
+    _ = state;
 }
