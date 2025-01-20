@@ -29,7 +29,10 @@ pub fn build(b: *std.Build) void {
     test_build.linkLibrary(lib);
 
     const run_test_exe = b.addRunArtifact(test_build);
+    const run_step = b.step("run", "print out the number of declarations in the raylib namespace");
+    run_step.dependOn(&run_test_exe.step);
+
     const check_step = b.step("check", "check for zls");
     check_step.dependOn(&lib.step);
-    check_step.dependOn(&run_test_exe.step);
+    check_step.dependOn(&test_build.step);
 }
