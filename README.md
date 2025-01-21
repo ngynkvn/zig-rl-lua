@@ -26,12 +26,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 # Acknowledgments
 
-- [raylib](https://www.raylib.com/) - A simple and easy-to-use library to enjoy videogames programming
-- [ziglua] - Lua bindings for Zig
-- [Zig] - A general-purpose programming language and toolchain
+- [raylib][rl] - A simple and easy-to-use library to enjoy videogames programming
+- [ziglua][lua] - Lua bindings for Zig
+- [Zig][zig] - A general-purpose programming language and toolchain
 
 [zig]: https://ziglang.org/
-[ziglua]: https://github.com/natecraddock/ziglua
+[lua]: https://github.com/natecraddock/ziglua
+[rl]: https://www.raylib.com/
 
 > [!NOTE]
 > I *am* using personal forks for raylib and ziglua to build the dependencies. There were some small fixes
